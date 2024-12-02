@@ -421,13 +421,17 @@ function get_track1(OrderId) {
     data: JSON.stringify({ "order_sn": orderIdArrNew.join() }),
     timeout: 16e3,
     success: function success(data) {
-      console.log("🚀 ~ success ~ data:", data)
       if (data.error === 'F') {
         renderTrackResult({ searchRef: orderIdArrNew[0], status: 'error', msg: data.msg }, '.box_' + index);
         return false;
       }
       orderIdArrNew.forEach(function (item, index) {
-        renderTrackResult({ searchRef: item, status: 'data', data: data.data[index] }, '.box_' + index);
+        const itemData = data.data.find(it => it.order.rucang_no == item)
+        if (itemData) {
+          renderTrackResult({ searchRef: item, status: 'data', data: itemData }, '.box_' + index);
+        } else {
+          renderTrackResult({ searchRef: item, status: 'error', msg: '未查询到数据' }, '.box_' + index);
+        }
       })
       if (orderIdArrNew.length > 2) {
         $('.box_' + index + ' .Detailed').hide();
@@ -435,7 +439,7 @@ function get_track1(OrderId) {
     },
     error: function error(xhr, type) {
       renderTrackResult(
-        { searchRef: item, status: 'error', msg: $.i18n.propSel('track_pross_timeout', item) },
+        { searchRef: item, status: 'error', msg: $.i18n.propSel('track_pross_timeout', orderIdArrNew[0]) },
         '.box_' + index
       );
       return false;
@@ -559,8 +563,8 @@ function renderTrackResult(_data, _class) {
       data_arr['num'] +
       '</div>\n                    </div>\n                </div>\n                <div class="w3-col s12">\n                    <hr style="margin: 5px 0;"/>\n                    <div class="w3-padding">\n                            ' +
       $.i18n.propSel('NewDetails') +
-      $F.toDateDetail(newOne.dates) +
-      ',\n                            ' +
+      (newOne.dates?$F.toDateDetail(newOne.dates) +
+      ',\n                            ':'')  +
       newOne.content
        +
       '\n                    </div>\n                </div>\n                <div class="w3-col s12">\n                    {html}\n                </div>\n            </div>\n        </div>';
