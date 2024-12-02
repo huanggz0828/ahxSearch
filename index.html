@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="auto">
+
+<head>
+    <title>ahdexpress</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./font/Roboto.css">
+    <link rel="stylesheet" href="./css/w3.css">
+    <link rel="stylesheet" href="./css/driver.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"> -->
+</head>
+
+<body>
+    <!-- 增加一个全局正在加载的loading -->
+    <div  id="loadingf">
+        <div class="loader-container w3-center">
+            <div class="loader"></div>
+            <noscript>
+                <div class="noscript-message">Please enable JavaScript to view the page content.</div>
+            </noscript>
+        </div>
+    </div>
+    <div class="w3-content" style="max-width:1200px">
+
+
+        <div class="main">
+            <!-- !PAGE CONTENT! -->
+
+            <div class="w3-main" style="margin-left:250px">
+                <div class="w3-hide" data-page="track">
+                    <!-- Push down content on small screens -->
+                    <!-- Top header -->
+                    <header class="w3-container w3-xlarge w3-animate-top">
+                        <p class="w3-left subtitle" data-lang="track_subtitle">Track</p>
+                        <!-- <p class="w3-right">
+                    <span class="w3-tag w3-round-small w3-tiny w3-border w3-light-grey">
+                       
+                        <select name="language" id="language">
+                            <option value="zh">Language 简体中文</option>
+                            <option value="en">Language English</option>
+                            <option value="auto">旧模式</option>
+                        </select>
+                    </span>
+                </p> -->
+                    </header>
+                    <div class="w3-container w3-animate-left">
+                        <p data-lang="track_details_line1">Enter the query number / 输入运单号:</p>
+                        <p data-lang="track_details_line2">一个单号一行（最大20）、回车换行、自动去重、Ctrl+回车快速查询</p>
+                        <div class="w3-row">
+                            <div class="w3-col s12 m9 " style="position:relative;">
+                                <div id="textAreaLineBox">
+                                    <div class="container ">
+                                        <div class="numbers"></div>
+                                        <textarea title="connote" class="textarea input_OrderId"></textarea>
+                                    </div>
+                                    <div class="w3-display-topright btn_clear" title="Clear/清除">×</div>
+                                </div>
+                            </div>
+                            <div class="w3-col s12 m3">
+                                <div class="btn_search_box">
+                                    <button type="button" class="w3-button w3-blue w3-margin-bottom btn_search"
+                                        data-lang="track_button_submit">Search查询</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-container w3-text-grey w3-animate-left" id="info_box">
+                        <div class="w3-padding-16">
+                            <div class="w3-row">
+                                <div class="w3-col l6 s12">
+                                    <div data-lang="track_details_subDetails">Detailed information</div>
+                                </div>
+                                <div class="w3-col l6 s12 w3-right-align">
+                                    <span class="trackListBtn">
+                                        <span
+                                            class="w3-button w3-round w3-small w3-border w3-light-grey w3-padding-small list_Screenshot"
+                                            data-lang="track_button_screenshot">
+                                            截图 Screenshot
+                                        </span>
+                                        <span
+                                            class="w3-button w3-round w3-small w3-border w3-light-grey w3-padding-small list_Collapse"
+                                            data-lang="track_button_collapse">
+                                            折叠 Collapse
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w3-responsive" id="list">
+                        </div>
+                    </div>
+                    <footer class="w3-margin"></footer>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div id="loading" class="w3-modal">
+            <div class="w3-modal-content w3-animate-zoom w3-round-small" style="padding:32px">
+                <div class="w3-container w3-white w3-center">
+                    <h3 class="_title" data-lang="html_loading_title"></h3>
+                    <p class="_text" data-lang="html_loading_subtitle"></p>
+                    <button type="button" class="w3-button w3-blue w3-margin-bottom w3-ripple w3-round-xxlarge _btn"
+                        data-lang="html_loading_button"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script text="javascript">
+        // 兼容IE9
+        // find方法
+        var notFind = false
+        if (!Array.prototype.find) {
+            console.warn("IE not find")
+            notFind = true
+            Array.prototype.find = function (callback) {
+                return callback && (this.filter(callback) || [])[0];
+            };
+        }
+    </script>
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11"></script> -->
+
+    <script src="./js/jquery.min.js?ver=20241112"></script>
+    <script src="./js/jquery.i18n.properties.min.js?ver=20241112"></script>
+    
+    <script src="./js/html2canvas.min.js?ver=20241112"></script>
+    <script src="./js/clipboard.min.js?ver=20241112"></script>
+    <script src="./js/driver.js.iife.js?ver=20241112"></script>
+
+    <script src="./js/js.js?ver=20241112"></script>
+    <!-- 隐藏 loadingf -->
+    <script>
+        $(function () {
+            $('#loadingf').hide()
+        })
+    </script>
+</body>
+
+</html>
