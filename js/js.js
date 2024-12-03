@@ -486,6 +486,7 @@ function renderTrackResult(_data, _class) {
     data_arr.sid = order.sid;
     data_arr.ysfs = order.ysfs;
     data_arr.nums = order.nums;
+    data_arr.zipcode = order.zipcode;
   }
   if (_data.msg) {
     data_arr.msg = _data.msg;
@@ -526,7 +527,7 @@ function renderTrackResult(_data, _class) {
   } else if (data_arr.status == 'error') {
     $(_class).html(errorHtmlTpl);
   } else if (data_arr.status == 'data') {
-    var newOne = data_arr.tracking[data_arr.tracking.length - 1] || {}
+    var newOne = data_arr.tracking[0] || {}
     var errorHtmlTplList =
       '\n        <div class="hoverShow2 w3-small">\n            <div>' +
       data_arr['sheetidinfo'] +
@@ -558,6 +559,13 @@ function renderTrackResult(_data, _class) {
       '">' +
       data_arr['sid'] +
       '</span></div>\n                    </div>\n                    <div class="w3-col l6 s12">\n                        <div>' +
+      $.i18n.propSel('calculation_postcode') +
+      ': ' +
+      ' <span class="copytext" data-clipboard-text="' +
+      data_arr['zipcode'] +
+      '">' +
+      data_arr['zipcode'] +
+      '</span></div>\n                    </div>\n                    <div class="w3-col l6 s12">\n                        <div>' +
       $.i18n.propSel('nums') +
       ': ' +
       data_arr['nums'] +
@@ -571,7 +579,6 @@ function renderTrackResult(_data, _class) {
     var tempHtml_1 = '';
     tempHtml_1 += '\n<div class="w3-responsive">\n    <div class="timeline-list Detailed">\n    ';
     var Tracks = data_arr.tracking;
-    Tracks.reverse();
     Tracks.forEach(function (item, index, arr) {
       var oneClass = '';
       if (index == 0) {
