@@ -558,9 +558,9 @@ function renderTrackResult(_data, _class) {
       '">' +
       data_arr['sid'] +
       '</span></div>\n                    </div>\n                    <div class="w3-col l6 s12">\n                        <div>' +
-      $.i18n.propSel('num') +
+      $.i18n.propSel('nums') +
       ': ' +
-      data_arr['num'] +
+      data_arr['nums'] +
       '</div>\n                    </div>\n                </div>\n                <div class="w3-col s12">\n                    <hr style="margin: 5px 0;"/>\n                    <div class="w3-padding">\n                            ' +
       $.i18n.propSel('NewDetails') +
       (newOne.dates?$F.toDateDetail(newOne.dates) +
