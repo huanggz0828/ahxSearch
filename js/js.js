@@ -422,7 +422,7 @@ function get_track1(OrderId) {
     timeout: 16e3,
     success: function success(data) {
       if (data.error === 'F') {
-        renderTrackResult({ searchRef: orderIdArrNew[0], status: 'error', msg: data.msg }, '.box_' + index);
+        renderTrackResult({ searchRef: orderIdArrNew[0], status: 'error', msg: data.msg }, '.box_0');
         return false;
       }
       orderIdArrNew.forEach(function (item, index) {
